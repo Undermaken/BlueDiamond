@@ -5,10 +5,8 @@
 package org.bluediamond.ui;
 
 import org.bluediamond.functionality.IFunctionality;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import org.bluediamond.BlueDiamond;
+import org.bluediamond.functionality.TableFinder;
 
 /**
  *
@@ -16,7 +14,7 @@ import org.bluediamond.BlueDiamond;
  */
 public class MainMenu {
     
-    private IFunctionality[] functionality=new IFunctionality[0];
+    private IFunctionality[] functionality= {new TableFinder()};
     
     
     private static MainMenu instance;
@@ -29,7 +27,6 @@ public class MainMenu {
     {
         if(instance==null)
             instance=new MainMenu();
-        
         return instance;
     }
     
