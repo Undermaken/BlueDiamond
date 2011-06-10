@@ -32,31 +32,35 @@ public class MainMenu {
     
     public void run()
     {
-        System.out.println(String.format("---- BlueDiamond v%.2f ----\n", BlueDiamond.APP_VERSION));
-        
-        int count=1;
-        for(IFunctionality f : functionality)
+        while(true)
         {
-            System.out.println(String.format("%d) %s",count++,f.getName()));
-        }
-        System.out.println("\nq) Quit");
-        System.out.print("\nYour Choice: ");
-        String line=BlueDiamond.getLine();
-        
-        if(line.equals("q"))
-            System.exit(0);
+            System.out.println(String.format("---- BlueDiamond v%.2f ----\n", BlueDiamond.APP_VERSION));
 
-        try            
-        {
-            Integer i=Integer.valueOf(line);
-            int num=i.intValue()-1;
+            int count=1;
+            for(IFunctionality f : functionality)
+            {
+                System.out.println(String.format("%d) %s",count++,f.getName()));
+            }
+            System.out.println("\nq) Quit");
+            System.out.print("\nYour Choice: ");
+            String line=BlueDiamond.getLine();
+
+            if(line.equals("q"))
+                System.exit(0);
+
+            int num=-1;
+            try            
+            {
+                Integer i=Integer.valueOf(line);
+                num=i.intValue()-1;
+            }
+            catch(NumberFormatException e)
+            {
+                continue;
+            }
             if(num>=0 && num<functionality.length)
                 functionality[num].run();
         }
-        catch(NumberFormatException e)
-        {}
-        
-        run();
         
     }
 }
