@@ -138,10 +138,11 @@ public class TableFinder implements IFunctionality {
                 builder.append(line);
             rd.close();        
 
-            String response=builder.toString();
+            String response=StringUtils.NoSpaces(builder.toString().toLowerCase());
+            String errorPat = StringUtils.NoSpaces(PatternError.toLowerCase());
             if(DEBUG)
                 System.out.println("DEBUG\n"+response);
-            if((isError && response.toLowerCase().contains(PatternError.toLowerCase())) || (!isError && !response.toLowerCase().contains(PatternError.toLowerCase())))
+            if(isError && response.contains(errorPat) || (!isError && !response.contains(errorPat)))
             {
                 if(DEBUG)
                     System.out.println("[-] NOT FOUND: " +table_name);
