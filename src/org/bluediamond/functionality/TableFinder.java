@@ -133,12 +133,12 @@ public class TableFinder implements IFunctionality {
             }
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line = "";
-            StringBuilder builder=new StringBuilder(conn.getContentLength());
+            String builder= "";//alcune response sono chunked e quindi hanno content-lenght == -1
             while ((line = rd.readLine()) != null)
-                builder.append(line);
+                builder += line;
             rd.close();        
 
-            String response=StringUtils.NoSpaces(builder.toString().toLowerCase());
+            String response=StringUtils.NoSpaces(builder.toLowerCase());
             String errorPat = StringUtils.NoSpaces(PatternError.toLowerCase());
             if(DEBUG)
                 System.out.println("DEBUG\n"+response);
